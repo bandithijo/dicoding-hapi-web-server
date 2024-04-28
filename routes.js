@@ -50,6 +50,21 @@ const routes = [
     }
   },
   {
+    method: 'POST',
+    path: '/books',
+    handler: (request, h) => {
+      const { author, title } = request.payload;
+      const output = {
+        id: new Date().getTime(),
+        author,
+        title
+      }
+      return h.response(output)
+              .header('Content-Type', 'application/json')
+              .code(201);
+    }
+  },
+  {
     method: '*',
     path: '/{any*}',
     handler: (request, h) => {
