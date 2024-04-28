@@ -1,4 +1,5 @@
 const Hapi = require('@hapi/hapi');
+const routes = require('./routes');
 
 const init = async () => {
   const server = Hapi.server({
@@ -6,22 +7,7 @@ const init = async () => {
     host: 'localhost',
   });
 
-  server.route([
-    {
-      method: 'GET',
-      path: '/',
-      handler: (request, h) => {
-        return 'Homepage';
-      }
-    },
-    {
-      method: 'GET',
-      path: '/about',
-      handler: (request, h) => {
-        return 'About page'
-      }
-    }
-  ]);
+  server.route(routes);
 
   await server.start();
   console.info(`Server listening on ${server.info.uri}`);
