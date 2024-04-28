@@ -6,13 +6,22 @@ const init = async () => {
     host: 'localhost',
   });
 
-  server.route({
-    method: 'GET',
-    path: '/',
-    handler: (request, h) => {
-      return 'Hello Hapi!';
+  server.route([
+    {
+      method: 'GET',
+      path: '/',
+      handler: (request, h) => {
+        return 'Homepage';
+      }
+    },
+    {
+      method: 'GET',
+      path: '/about',
+      handler: (request, h) => {
+        return 'About page'
+      }
     }
-  })
+  ]);
 
   await server.start();
   console.info(`Server listening on ${server.info.uri}`);
